@@ -1,3 +1,5 @@
+//FileSystem
+import * as fs from 'fs';
 //Restify
 import * as restify from 'restify';
 //Mongoose
@@ -23,10 +25,18 @@ export class Server {
     initRoutes(routers: Router[]): Promise<any> {
         return new Promise((resolve, reject) => {
             try{
-                this.application = restify.createServer({
+
+                const options: restify.ServerOptions = {
                     name: 'flanci-cotacao',
                     version: '1.0.0'
-                })
+                }
+
+                if(environment.security.enableHTTPS){
+                    options.certificate = fs.readFileSync(environment.security.certificate),
+                    options.key = fs.readFileSync(environment.security.key)
+                }
+
+                this.application = restify.createServer(options)
 
                 //Plugins
                 this.application.use(restify.plugins.queryParser())

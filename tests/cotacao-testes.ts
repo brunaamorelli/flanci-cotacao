@@ -1,3 +1,8 @@
+//FileSystem
+import * as fs from 'fs';
+
+const contrato = fs.readFileSync('./tests/files/contrato.docx', 'utf-8');
+
 export const cotacaoTesteSuccess = {
     tomadorCNPJ: "02.471.574/0001-73",
     tomadorRazaoSocial: "Flanci Corretora de Seguros",
@@ -27,5 +32,6 @@ export const cotacaoTesteSuccess = {
     tribunal: "TJRJ",
     idCliente: "45678910",
     observacoes: "bla bla bla",
-    emailRecebimento: "felipe@yahoo.com"
+    emailRecebimento: "felipe@yahoo.com",
+    contrato: contrato
 }

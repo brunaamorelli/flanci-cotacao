@@ -49,11 +49,11 @@ const cotacaoSchema = new mongoose.Schema({
     },
     tomadorRazaoSocial: {
         type: String,
-        // required: true
+        required: true
     },
     modalidade: {
         type: String,
-        // required: true
+        required: true
     },
     depositoRecursal: {
         type: Boolean,
@@ -63,46 +63,46 @@ const cotacaoSchema = new mongoose.Schema({
         type: Boolean,
         required: false
     },
-    // tipoRecurso: {
-    //     type: [String],
-    //     required: [function(){
-    //         return this.depositoRecursal;
-    //     }, 'Campo obrigatório caso campo depositoRecursal seja verdadeiro.'],
-    //     validate: [function(val) {
-    //         if(this.depositoRecursal && !this.processoSubstituicao){
-    //             return val.length == 1;
-    //         }
-    //         return true
-    //     }, 'Somente um tipo de recurso caso processoSubstituicao seja falso.']
-    // },
+    tipoRecurso: {
+        type: [String],
+        required: [function(){
+            return this.depositoRecursal;
+        }, 'Campo obrigatório caso campo depositoRecursal seja verdadeiro.'],
+        validate: [function(val) {
+            if(this.depositoRecursal && !this.processoSubstituicao){
+                return val.length == 1;
+            }
+            return true
+        }, 'Somente um tipo de recurso caso processoSubstituicao seja falso.']
+    },
     inicioVigencia: {
         type: Date,
-        // required: true
+        required: true
     },
     vigencia: {
         type: Number,
-        // required: true
+        required: true
     },
     valorCobertura: {
         type: Number,
-        // required: true
+        required: true
     },
     reclamante: {
         type: reclamanteSchema,
-        // required: true
+        required: true
     },
     processo: {
         type: String,
-        // required: true
+        required: true
     },
     localGarantia: {
         type: String,
-        // required: true,
+        required: true,
         enum: ['Tribunal', 'Vara']
     },
     tribunal: {
         type: String,
-        // required: true
+        required: true
     },
     idCliente: {
         type: String,
@@ -114,7 +114,7 @@ const cotacaoSchema = new mongoose.Schema({
     },
     emailRecebimento: {
         type: String,
-        // required: true,
+        required: true,
         validate: [function(val){
             return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/.test(val);
         }, 'E-mail mal formatado']
@@ -123,6 +123,7 @@ const cotacaoSchema = new mongoose.Schema({
     },
     contrato: {
         type: Buffer,
+        required: true
     }
 })
 

@@ -25,7 +25,10 @@ class CotacoesRouter extends ModelRouter<Cotacao> {
         //NO MODEL-ROUTER, VARRER ARRAY DE FILES P/ DEIXAR GENÉRICO
         
         let cotacao = new Cotacao(req.body)
-        cotacao.contrato = fs.readFileSync(req.files.contrato.path)
+
+        if(req.files){
+            cotacao.contrato = fs.readFileSync(req.files.contrato.path)
+        }
 
         cotacao.save()
             .then(this.render(res, next))
