@@ -22,7 +22,6 @@ class CotacoesRouter extends ModelRouter<Cotacao> {
     }
 
     save = (req, res, next) => {
-        //NO MODEL-ROUTER, VARRER ARRAY DE FILES P/ DEIXAR GENÉRICO
         
         let cotacao = new Cotacao(req.body)
 

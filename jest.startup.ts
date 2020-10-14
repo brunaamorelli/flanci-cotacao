@@ -11,6 +11,7 @@ let server: Server
 const beforeAllTests = () => {
     environment.db.url = process.env.DB_URL || 'mongodb+srv://flanci-cotacao:HSbrqkugMYpiRRfMsoe@licitacao.iwaja.mongodb.net/aeronautica-test-db?retryWrites=true&w=majority'
     environment.server.port = process.env.SERVER_PORT || 3001
+    environment.security.enableHTTPS = process.env.ENABLE_HTTPS || false
     server = new Server()
     return server.bootstrap([cotacoesRouter])
         .then(() => Cotacao.deleteMany({}).exec())

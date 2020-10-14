@@ -4,8 +4,9 @@ import * as fs from 'fs';
 import * as restify from 'restify';
 //Mongoose
 import * as mongoose from 'mongoose';
-//Environment
+//Common
 import { environment } from '../common/environment';
+import { logger } from '../common/logger';
 //Custom files
 import { Router } from '../common/router';
 import { handleError } from './error.handler';
@@ -28,7 +29,8 @@ export class Server {
 
                 const options: restify.ServerOptions = {
                     name: 'flanci-cotacao',
-                    version: '1.0.0'
+                    version: '1.0.0',
+                    log: logger
                 }
 
                 if(environment.security.enableHTTPS){
@@ -39,6 +41,9 @@ export class Server {
                 this.application = restify.createServer(options)
 
                 //Plugins
+                this.application.pre(restify.plugins.requestLogger({
+                    log: logger
+                }))
                 this.application.use(restify.plugins.queryParser())
                 this.application.use(restify.plugins.bodyParser({
                     mapParams: true,
