@@ -6,6 +6,7 @@ import * as fs from 'fs';
 import { ModelRouter } from '../common/model-router';
 //Custom Model
 import { Cotacao } from '../cotacao/cotacoes.model';
+import { logger } from '../common/logger';
 
 class CotacoesRouter extends ModelRouter<Cotacao> {
 

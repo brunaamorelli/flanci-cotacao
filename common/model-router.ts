@@ -56,6 +56,7 @@ export abstract class ModelRouter<D extends mongoose.Document> extends Router {
     validateUuid = (req, res, next) => {
         
         if (!uuidValidate(req.params.uuid)) {
+            req.log.error({req: req}, 'Invalid uuid: %s', req.params.uuid)
             next(new NotFoundError('Document not found'))
         } else {
             next()

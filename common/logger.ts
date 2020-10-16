@@ -6,5 +6,19 @@ import { environment } from './environment';
 
 export const logger  = bunyan.createLogger({
     name: environment.log.name,
-    level: (<any>bunyan).resolveLevel(environment.log.level)
+    streams: [
+        {
+            level: 'debug',
+            stream: process.stdout
+        },
+        {
+            level: 'trace',
+            path: 'flanci-cotacao-trace.log'
+        }
+    ],
+    serializers: {
+        req: bunyan.stdSerializers.req,
+        res: bunyan.stdSerializers.res,
+        err: bunyan.stdSerializers.err
+    }
 })

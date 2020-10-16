@@ -9,7 +9,6 @@ export const environment = {
         key: process.env.CERT_KEY_FILE || './security/keys/key.pem'
     },
     log: {
-        level: process.env.LOG_LEVEL || 'debug',
         name: 'flanci-cotacao-logger'
     }
 }
