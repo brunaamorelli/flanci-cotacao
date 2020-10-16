@@ -87,6 +87,9 @@ export abstract class ModelRouter<D extends mongoose.Document> extends Router {
 
         document.save()
             .then(this.render(res, next))
-            .catch(next)
+            .catch(err => {
+                req.log.error({req: req}, 'Failed to save cotacao.')
+                next(err)
+            })
     }
 }

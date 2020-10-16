@@ -17,8 +17,6 @@ export const logger  = bunyan.createLogger({
         }
     ],
     serializers: {
-        req: bunyan.stdSerializers.req,
-        res: bunyan.stdSerializers.res,
-        err: bunyan.stdSerializers.err
+        req: bunyan.stdSerializers.req
     }
 })

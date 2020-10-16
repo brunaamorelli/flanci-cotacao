@@ -6,7 +6,6 @@ import * as fs from 'fs';
 import { ModelRouter } from '../common/model-router';
 //Custom Model
 import { Cotacao } from '../cotacao/cotacoes.model';
-import { logger } from '../common/logger';
 
 class CotacoesRouter extends ModelRouter<Cotacao> {
 
@@ -19,11 +18,13 @@ class CotacoesRouter extends ModelRouter<Cotacao> {
         Cotacao.findByUuid(req.params.uuid)
             .then(cotacao => cotacao ? cotacao : false)
             .then(this.render(res, next))
-            .catch(next)
+            .catch(err => {
+                req.log.debug({req: req}, 'Document not found. UUID: %s', req.params.uuid)
+                next(err)
+            })
     }
 
     save = (req, res, next) => {
-        
         let cotacao = new Cotacao(req.body)
 
         if(req.files){
