@@ -12,6 +12,6 @@ dist
 .DS_Store
 
 #environment
-environment.ts
+common/environment.ts
 ecosystem.config.js
 jest.startup.ts

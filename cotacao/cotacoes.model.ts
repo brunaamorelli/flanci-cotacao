@@ -9,6 +9,7 @@ import { Reclamante, reclamanteSchema } from './reclamante.model';
 
 export interface Cotacao extends mongoose.Document {
     uuid: string,
+    dataCotacao: Date,
     tomadorCNPJ: string,
     tomadorRazaoSocial: string,
     modalidade: string,
@@ -38,6 +39,11 @@ const cotacaoSchema = new mongoose.Schema({
         //Gerar no backend
         type: String,
         unique: true
+    },
+    dataCotacao: {
+        //Gerar no backend
+        type: Date,
+        required: true
     },
     tomadorCNPJ: {
         type: String,

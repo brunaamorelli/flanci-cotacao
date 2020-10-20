@@ -1,5 +1,7 @@
 //Restify Server
 import { Server } from 'restify';
+//Auth0
+import * as auth0 from '../lib/auth0';
 //FileSystem
 import * as fs from 'fs';
 //Router
@@ -27,6 +29,7 @@ class CotacoesRouter extends ModelRouter<Cotacao> {
     save = (req, res, next) => {
         let cotacao = new Cotacao(req.body)
 
+        cotacao.dataCotacao = new Date()
         if(req.files){
             cotacao.contrato = fs.readFileSync(req.files.contrato.path)
         }
@@ -38,9 +41,9 @@ class CotacoesRouter extends ModelRouter<Cotacao> {
 
     applyRoutes(application: Server) {
 
-        application.get(`/${this.basePath}`, this.findAll)
-        application.get(`/${this.basePath}/:uuid`, [this.validateUuid, this.findByUuid])
-        application.post(`/${this.basePath}`, this.save)
+        application.get(`/${this.basePath}`, [auth0(), this.findAll])
+        application.get(`/${this.basePath}/:uuid`, [auth0(), this.validateUuid, this.findByUuid])
+        application.post(`/${this.basePath}`, [auth0(), this.save])
     }
 }
 
