@@ -1,6 +1,6 @@
 # flanci-cotacao
 
-API Rest implemented with Node.js, Restify and Mongoose. Security implemented with Auth0. Logs Implemented with Bunyan. Tests implemented with Jest and Supertest.
+API Rest implemented with Node.js, Restify, and Mongoose. Security implemented with Auth0. Logs Implemented with Bunyan. Tests implemented with Jest and Supertest.
 
 ---
 ## Requirements
