@@ -9,9 +9,8 @@ node_modules/
 dist
 
 #Tests
-.DS_Store
+*.DS_Store
 
 #environment
-common/environment.ts
-ecosystem.config.js
-jest.startup.ts
+*_real.ts
+*_real.config.js

@@ -7,17 +7,17 @@ module.exports = {
     merge_logs : true,
     env : {
       SERVER_PORT: 5000,
-      DB_URL: "mongodb+srv://flanci-cotacao:HSbrqkugMYpiRRfMsoe@licitacao.iwaja.mongodb.net/Aeronautica?retryWrites=true&w=majority",
+      DB_URL: "<MONGODB_URL>",
       NODE_ENV: "development",
-      AUTH0_DOMAIN: "flanci-hml-cotacoes.us.auth0.com",
-      AUTH0_AUDIENCE: "OKGdALXrMg6iWxdRCg8IkcvbVQK4k8qv"
+      AUTH0_DOMAIN: "<AUTH0_DOMAIN>",
+      AUTH0_AUDIENCE: "<AUTH0_AUDIENCE>"
     },
     env_production : {
       SERVER_PORT: 5001,
-      DB_URL: "mongodb+srv://flanci-cotacao:HSbrqkugMYpiRRfMsoe@licitacao.iwaja.mongodb.net/Aeronautica?retryWrites=true&w=majority",
+      DB_URL: "<MONGODB_URL>",
       NODE_ENV: "production",
-      AUTH0_DOMAIN: "flanci-hml-cotacoes.us.auth0.com",
-      AUTH0_AUDIENCE: "OKGdALXrMg6iWxdRCg8IkcvbVQK4k8qv"
+      AUTH0_DOMAIN: "<AUTH0_DOMAIN>",
+      AUTH0_AUDIENCE: "<AUTH0_AUDIENCE>"
     }
   }]
 }
